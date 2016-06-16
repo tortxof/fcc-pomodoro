@@ -72,10 +72,10 @@ $(function() {
     );
     if (time_left.break_time) {
       $('#message-display').text('Break Time');
-      $('#progress-fg').css('background-color', 'cornflowerblue');
+      $('#progress-fg').addClass('break-color');
     } else {
       $('#message-display').text('');
-      $('#progress-fg').css('background-color', 'green');
+      $('#progress-fg').removeClass('break-color');
     }
     if (my_timer.running) {
       requestAnimationFrame(UpdateDisplay);
