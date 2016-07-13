@@ -74,8 +74,10 @@ function UpdateDisplay() {
     $('#progress-fg').removeClass('break-color');
   }
   if (my_timer.running) {
+    $('#start').text('Stop');
     requestAnimationFrame(UpdateDisplay);
   } else {
+    $('#start').text('Start');
     cancelAnimationFrame(animation_id);
   }
 }
