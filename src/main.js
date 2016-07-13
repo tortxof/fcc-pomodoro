@@ -10,29 +10,29 @@ function Timer() {
   this.running = false;
   this.start_time_s = 0;
 
-  this.Start = function() {
+  this.start = function() {
     this.start_time_s = nowSeconds();
     this.running = true;
   };
 
-  this.Stop = function() {
+  this.stop = function() {
     console.log('Stopping.');
     this.running = false;
   };
 
-  this.SessionPlus = function() {
+  this.sessionPlus = function() {
     if (this.session_m < 240) this.session_m++;
   };
 
-  this.SessionMinus = function() {
+  this.sessionMinus = function() {
     if (this.session_m > 0) this.session_m--;
   };
 
-  this.BreakPlus = function() {
+  this.breakPlus = function() {
     if (this.break_m < 60) this.break_m++;
   };
 
-  this.BreakMinus = function() {
+  this.breakMinus = function() {
     if (this.break_m > 0) this.break_m--;
   };
 
@@ -48,7 +48,7 @@ function Timer() {
     var break_time = (time_left_s < this.break_m * 60);
     console.log(break_time);
     if (time_left_s <= 0) {
-      this.Stop();
+      this.stop();
     }
     return {
       'string': time_left_m.toString() + ':' + ('0' + (time_left_s % 60).toString()).slice(-2),
@@ -87,32 +87,32 @@ var animation_id;
 UpdateDisplay();
 
 $('#session-minus').click(function() {
-  my_timer.SessionMinus();
+  my_timer.sessionMinus();
   UpdateDisplay();
 });
 
 $('#session-plus').click(function() {
-  my_timer.SessionPlus();
+  my_timer.sessionPlus();
   UpdateDisplay();
 });
 
 $('#break-minus').click(function() {
-  my_timer.BreakMinus();
+  my_timer.breakMinus();
   UpdateDisplay();
 });
 
 $('#break-plus').click(function() {
-  my_timer.BreakPlus();
+  my_timer.breakPlus();
   UpdateDisplay();
 });
 
 $('#start').click(function() {
   if (my_timer.running) {
     cancelAnimationFrame(animation_id);
-    my_timer.Stop();
+    my_timer.stop();
     UpdateDisplay();
   } else {
-    my_timer.Start();
+    my_timer.start();
     animation_id = requestAnimationFrame(UpdateDisplay);
   }
 });
