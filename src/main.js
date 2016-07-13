@@ -1,22 +1,34 @@
+var sound = new Howl({
+  urls: [
+    'https://s3.amazonaws.com/djones-assets/pomodoro.mp3',
+    'https://s3.amazonaws.com/djones-assets/pomodoro.ogg'
+  ],
+  sprite: {
+    end_break: [0, 3000],
+    begin_break: [3000, 12000]
+  }
+});
+
 function nowSeconds() {
-  // This should be Date.now() / 1000
-  // It's / 100 during development to make time go by quicker.
-  return Date.now() / 100;
+  return Date.now() / 1000;
 }
 
 function Timer() {
-  this.session_m = 2;
-  this.break_m = 1;
+  this.session_m = 25;
+  this.break_m = 5;
   this.running = false;
+  this.break_time = false;
   this.start_time_s = 0;
 
   this.start = function() {
     this.start_time_s = nowSeconds();
     this.running = true;
+    this.break_time = false;
   };
 
   this.stop = function() {
     this.running = false;
+    this.break_time = false;
   };
 
   this.sessionPlus = function() {
@@ -44,14 +56,19 @@ function Timer() {
     }
     time_left_s = Math.ceil(time_left_s);
     var time_left_m = Math.floor(time_left_s / 60);
-    var break_time = (time_left_s < this.break_m * 60);
+    var prev_break_time = this.break_time;
+    this.break_time = (time_left_s < this.break_m * 60);
+    if ((!prev_break_time) && this.break_time) {
+      sound.play('begin_break');
+    }
     if (time_left_s <= 0) {
+      sound.play('end_break');
       this.start();
     }
     return {
       'string': time_left_m.toString() + ':' + ('0' + (time_left_s % 60).toString()).slice(-2),
       'seconds': time_left_s,
-      'break_time': break_time
+      'break_time': this.break_time
     };
   };
 
