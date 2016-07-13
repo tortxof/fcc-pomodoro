@@ -46,7 +46,7 @@ function Timer() {
     var time_left_m = Math.floor(time_left_s / 60);
     var break_time = (time_left_s < this.break_m * 60);
     if (time_left_s <= 0) {
-      this.stop();
+      this.start();
     }
     return {
       'string': time_left_m.toString() + ':' + ('0' + (time_left_s % 60).toString()).slice(-2),
