@@ -13,28 +13,28 @@ function Timer() {
   this.Start = function() {
     this.start_time_s = nowSeconds();
     this.running = true;
-  }
+  };
 
   this.Stop = function() {
     console.log('Stopping.');
     this.running = false;
-  }
+  };
 
   this.SessionPlus = function() {
     if (this.session_m < 240) this.session_m++;
-  }
+  };
 
   this.SessionMinus = function() {
     if (this.session_m > 0) this.session_m--;
-  }
+  };
 
   this.BreakPlus = function() {
     if (this.break_m < 60) this.break_m++;
-  }
+  };
 
   this.BreakMinus = function() {
     if (this.break_m > 0) this.break_m--;
-  }
+  };
 
   this.getTimeLeft = function() {
     var time_left_s;
@@ -55,7 +55,7 @@ function Timer() {
       'seconds': time_left_s,
       'break_time': break_time
     };
-  }
+  };
 
 }
 
