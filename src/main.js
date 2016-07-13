@@ -16,7 +16,6 @@ function Timer() {
   };
 
   this.stop = function() {
-    console.log('Stopping.');
     this.running = false;
   };
 
@@ -46,7 +45,6 @@ function Timer() {
     time_left_s = Math.ceil(time_left_s);
     var time_left_m = Math.floor(time_left_s / 60);
     var break_time = (time_left_s < this.break_m * 60);
-    console.log(break_time);
     if (time_left_s <= 0) {
       this.stop();
     }
