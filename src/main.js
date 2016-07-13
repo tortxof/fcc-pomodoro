@@ -1,7 +1,7 @@
 var sound = new Howl({
   urls: [
-    'https://s3.amazonaws.com/djones-assets/pomodoro.mp3',
-    'https://s3.amazonaws.com/djones-assets/pomodoro.ogg'
+    'https://s3.amazonaws.com/djones-assets/pomodoro.ogg',
+    'https://s3.amazonaws.com/djones-assets/pomodoro.mp3'
   ],
   sprite: {
     end_break: [0, 3000],
