@@ -1,3 +1,5 @@
+/* global Howl */
+
 var sound = new Howl({
   urls: [
     'https://s3.amazonaws.com/djones-assets/pomodoro.ogg',
